@@ -7,11 +7,21 @@ jobs:
     container: gradle:6-jdk11
     steps:
       - uses: actions/checkout@v2
+      - name: Upload Repo
+        uses: actions/upload-artifact@v2
+        with:
+          name: code
+          path: .
   Build:
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
     needs: Clone-down
     steps:
+      - name: Download code
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
       - name: Build
         run: ci/build-app.sh
       
@@ -20,6 +30,11 @@ jobs:
     container: gradle:6-jdk11
     needs: Clone-down
     steps:
+      - name: Download code
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
       - name: Test
         run: ci/unit-test-app.sh
   Upload:
@@ -27,6 +42,11 @@ jobs:
     container: gradle:6-jdk11
     needs: [Build, Test]
     steps:
+      - name: Download code
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
         with:
