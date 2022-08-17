@@ -1,4 +1,4 @@
-name: Java CI
+name: MATRIX JAVA CI
 on: push
 jobs:
   Clone-down:
