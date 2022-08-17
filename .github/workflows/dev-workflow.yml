@@ -1,4 +1,4 @@
-name: JAVA CI
+name: DEV JAVA CI
 on:
   push:
     branches:
