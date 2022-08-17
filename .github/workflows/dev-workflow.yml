@@ -1,5 +1,8 @@
 name: JAVA CI
-on: push
+on:
+  push:
+    branches:
+      - main
 env:
   docker_username: ${{ secrets.DOCKER_USERNAME }}
   docker_password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
