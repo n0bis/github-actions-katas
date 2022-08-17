@@ -14,8 +14,19 @@ jobs:
     steps:
       - name: Build
         run: ci/build-app.sh
+      
+  Test:
+    runs-on: ubuntu-latest
+    container: gradle:6-jdk11
+    needs: Clone-down
+    steps:
       - name: Test
         run: ci/unit-test-app.sh
+  Upload:
+    runs-on: ubuntu-latest
+    container: gradle:6-jdk11
+    needs: [Build, Test]
+    steps:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
         with:
