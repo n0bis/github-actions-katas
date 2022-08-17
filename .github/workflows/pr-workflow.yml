@@ -37,7 +37,7 @@ jobs:
           name: code
           path: .
       - name: Upload Jar
-        uses: actions/upload-artifact
+        uses: actions/upload-artifact@v2
         with: 
           name: src
           path: app/build/libs/app-0.1-all.jar
